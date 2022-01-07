@@ -1,7 +1,9 @@
 package com.ndiaye.m2ishop;
 
 import com.ndiaye.m2ishop.model.Product;
+import com.ndiaye.m2ishop.model.Role;
 import com.ndiaye.m2ishop.repository.ProductRepository;
+import com.ndiaye.m2ishop.repository.RoleRepository;
 import com.ndiaye.m2ishop.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -15,6 +17,9 @@ public class M2iShopApplication implements CommandLineRunner {
 
 	@Autowired
 	private ProductRepository productRepository;
+
+	@Autowired
+	private RoleRepository roleRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(M2iShopApplication.class, args);
@@ -36,5 +41,11 @@ public class M2iShopApplication implements CommandLineRunner {
 		productRepository.save(product1);
 		productRepository.save(product2);
 		productRepository.save(product3);
+
+		roleRepository.deleteAll();
+		Role role1 = new Role("ROLE_ADMIN");
+		Role role2 = new Role("ROLE_USER");
+		roleRepository.save(role1);
+		roleRepository.save(role2);
 	}
 }
